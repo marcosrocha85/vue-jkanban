@@ -1,17 +1,39 @@
 {
   "name": "vue-jkanban",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Vue component from riktar/jkanban",
-  "main": "vue-jkanban.js",
   "watch": {
     "build": "vue-jkanban.js"
   },
   "scripts": {
     "watch_build": "npm-watch build",
-    "build": "npm run scripts && npm run styles",
-    "scripts": "browserify ./vue-jkanban.js -o dist/vue-jkanban.js && uglifyjs -m -c -o dist/vue-jkanban.min.js dist/vue-jkanban.js",
-    "styles": "npm-css ./vue-jkanban.css > dist/vue-jkanban.css && cleancss dist/vue-jkanban.css -o dist/vue-jkanban.min.css",
+    "build": "vue-cli-service build",
+    "scripts": "browserify ./src/main.js -o dist/vue-jkanban.js && uglifyjs -m -c -o dist/vue-jkanban.min.js dist/vue-jkanban.js",
+    "styles": "npm-css ./src/vue-jkanban.css > dist/vue-jkanban.css && cleancss dist/vue-jkanban.css -o dist/vue-jkanban.min.css",
+    "serve": "vue-cli-service serve",
+    "lint": "vue-cli-service lint",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "core-js": "^3.2.1",
+    "jkanban": "^1.0.1",
+    "npm": "^6.6.0",
+    "npm-watch": "^0.6.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "browserify": "11.0.0",
+    "clean-css": "^4.2.1",
+    "npm-css": "^0.2.3",
+    "uglify-js": "^3.3.4",
+    "vue-loader": "^15.7.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.5.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "repository": {
     "type": "git",
@@ -33,15 +55,27 @@
   "bugs": {
     "url": "https://github.com/marcosrocha85/vue-jkanban/issues"
   },
-  "dependencies": {
-    "jkanban": "^1.0.1",
-    "npm": "^6.6.0",
-    "npm-watch": "^0.6.0"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
   },
-  "devDependencies": {
-    "browserify": "11.0.0",
-    "clean-css": "^3.3.6",
-    "npm-css": "^0.2.3",
-    "uglify-js": "^3.3.4"
-  }
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
