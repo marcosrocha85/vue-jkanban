@@ -1,81 +1,82 @@
 {
-  "name": "vue-jkanban",
-  "version": "0.1.0",
-  "description": "Vue component from riktar/jkanban",
-  "watch": {
-    "build": "vue-jkanban.js"
-  },
-  "scripts": {
-    "watch_build": "npm-watch build",
-    "build": "vue-cli-service build",
-    "scripts": "browserify ./src/main.js -o dist/vue-jkanban.js && uglifyjs -m -c -o dist/vue-jkanban.min.js dist/vue-jkanban.js",
-    "styles": "npm-css ./src/vue-jkanban.css > dist/vue-jkanban.css && cleancss dist/vue-jkanban.css -o dist/vue-jkanban.min.css",
-    "serve": "vue-cli-service serve",
-    "lint": "vue-cli-service lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "core-js": "^3.2.1",
-    "jkanban": "^1.0.1",
-    "npm": "^6.6.0",
-    "npm-watch": "^0.6.0",
-    "vue": "^2.6.10"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
-    "browserify": "11.0.0",
-    "clean-css": "^4.2.1",
-    "npm-css": "^0.2.3",
-    "uglify-js": "^3.3.4",
-    "vue-loader": "^15.7.1",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^6.5.1",
-    "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/marcosrocha85/vue-jkanban.git"
-  },
-  "homepage": "https://marcosrocha.net/vue-jkanban",
-  "keywords": [
-    "jkanban",
-    "vue",
-    "kanban",
-    "js",
-    "drag",
-    "todo list",
-    "javascript",
-    "plugin"
-  ],
-  "author": "Marcos Rocha",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/marcosrocha85/vue-jkanban/issues"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "vue-jkanban",
+    "version": "0.1.0",
+    "description": "Vue component from riktar/jkanban",
+    "watch": {
+        "build": "vue-jkanban.js"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+    "scripts": {
+        "watch_build": "npm-watch build",
+        "build": "vue-cli-service build",
+        "scripts": "browserify ./src/main.js -o dist/vue-jkanban.js && uglifyjs -m -c -o dist/vue-jkanban.min.js dist/vue-jkanban.js",
+        "styles": "npm-css ./src/vue-jkanban.css > dist/vue-jkanban.css && cleancss dist/vue-jkanban.css -o dist/vue-jkanban.min.css",
+        "serve": "vue-cli-service serve",
+        "lint": "vue-cli-service lint",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "core-js": "^3.4.2",
+        "jkanban": "^1.0.1",
+        "npm": "^6.13.1",
+        "npm-watch": "^0.6.0",
+        "vue": "^2.6.10"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^4.0.5",
+        "@vue/cli-plugin-eslint": "^4.0.5",
+        "@vue/cli-service": "^4.0.5",
+        "babel-eslint": "^10.0.1",
+        "browserify": "16.5.0",
+        "clean-css": "^4.2.1",
+        "css-loader": "^3.2.0",
+        "eslint": "^6.7.0",
+        "eslint-plugin-vue": "^6.0.1",
+        "npm-css": "^0.2.3",
+        "uglify-js": "^3.6.9",
+        "vue-loader": "^15.7.2",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marcosrocha85/vue-jkanban.git"
+    },
+    "homepage": "https://marcosrocha.net/vue-jkanban",
+    "keywords": [
+        "jkanban",
+        "vue",
+        "kanban",
+        "js",
+        "drag",
+        "todo list",
+        "javascript",
+        "plugin"
     ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "author": "Marcos Rocha",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/marcosrocha85/vue-jkanban/issues"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }

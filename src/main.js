@@ -1,10 +1,8 @@
 import Vue from 'vue';
-import VueJKanban from './components/vue-jkanban';
+import App from './App';
 
-window.Vue = Vue
+Vue.config.productionTip = false
 
-window.Vue.component('jkanban', VueJKanban);
-
-new window.Vue({
-  el: '#app'
-})
+new Vue({
+    render: h => h(App),
+}).$mount('#app')
