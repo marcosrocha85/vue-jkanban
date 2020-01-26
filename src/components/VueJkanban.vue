@@ -4,6 +4,7 @@
 
 <script>
 require("jkanban")
+require("jkanban/jkanban.css")
 
 export default {
   name: 'vue-jkanban',
@@ -106,5 +107,4 @@ export default {
 </script>
 
 <style>
- @import '../../node_modules/jkanban/jkanban.css';
 </style>
