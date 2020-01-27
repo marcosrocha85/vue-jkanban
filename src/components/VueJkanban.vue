@@ -59,6 +59,82 @@ export default {
       count: 0
     };
   },
+  watch: {
+    value: {
+      deep: true,
+      handler: function(after) {
+        var vm = this
+
+        let boardsAdded = after.filter(function(board, idx) {
+          if (idx > vm.getOldData().length - 1) {
+            return true
+          }
+        })
+
+        let boardsRemoved = vm.getOldData().filter(function(board) {
+          return !after.some(function(currentBoard) {
+            return currentBoard.id == board.id
+          })
+        })
+
+        if (boardsAdded.length == 0 && boardsRemoved.length == 0) {
+          var itemsAdded = []
+          after.filter(function(p, idxBoard) {
+            return p.item.some(function(currentItem, idx) {
+              if (idx > vm.getOldData()[idxBoard].item.length - 1) {
+                currentItem.boardId = p.id
+                itemsAdded.push(currentItem)
+                return true;
+              }
+            })
+          })
+
+          var itemsRemoved = []
+          vm.getOldData().filter(function(board, idxBoard) {
+            board.item.forEach(function(oldItem) {
+              let itemFound = after[idxBoard].item.some(function(newItem) {
+                console.log(oldItem.id, newItem.id)
+                return oldItem.id == newItem.id
+              })
+              if (!itemFound) 
+              {
+                itemsRemoved.push(oldItem)
+              }
+            })
+          })
+
+          itemsAdded.forEach(function(item) {
+            let boardId = item.boardId
+            delete item.boardId
+            vm._jkanban.addElement(boardId, item)
+          })
+
+          itemsRemoved.forEach(function(item) {
+console.log("removing", item)            
+            vm._jkanban.removeElement(item.id)
+          })
+        }
+
+        vm.setValue()
+        boardsAdded.forEach(function (board) {
+          vm._jkanban.addBoards([board])
+        })
+
+        boardsRemoved.forEach(function (board) {
+          vm._jkanban.removeBoard(board.id)
+        })
+      }
+    }
+  },
+  methods: {
+    setValue: function() {
+      /* global _ */
+      this._oldData = _.cloneDeep(this.value)
+    },
+    getOldData: function() {
+      return this._oldData
+    }
+  },
   mounted: function() {
     let selfRef = this
     this.onClick = function(el) {
@@ -83,13 +159,14 @@ export default {
       selfRef.$emit('buttonClick', { el: el, boardId: boardId })
     }
 
+    this._oldData = []
     this._jkanban = new window.jKanban({
       element: '#vue-jkanban',
+      boards: [],
       gutter: this.gutter,
       widthBoard: this.widthBoard,
       responsivePercentage: this.responsivePercentage,
       dragItems: this.dragItems,
-      boards: this.value,
       dragBoards: this.dragBoards,
       addItemButton: this.addItemButton,
       buttonContent: this.buttonContent,
@@ -102,6 +179,11 @@ export default {
       dragendBoard: this.onDragendBoard,
       buttonClick: this.onButtonClick
     });
+    let vm = this
+    setTimeout(function () {
+      vm._jkanban.addBoards(vm.value)
+    }, 200)
+    this.setValue()
   }
 };
 </script>
