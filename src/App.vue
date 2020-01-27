@@ -3,11 +3,11 @@
     <vue-jkanban v-model="board_data" />
     <button @click="addDefault">Add "Default" board</button>
     <br />
-    <button id="addToDo">Add element in "To Do" Board</button>
+    <button id="addToDo" @click="addElementInToDoBoard">Add element in "To Do" Board</button>
     <br />
-    <button id="removeBoard">Remove "Done" Board</button>
+    <button id="removeBoard" @click="removeDoneBoard">Remove "Done" Board</button>
     <br />
-    <button id="removeElement">Remove "My Task Test"</button>
+    <button id="removeElement" @click="removeMyTastTest">Remove "My Task Test"</button>
   </div>
 </template>
 
@@ -97,6 +97,37 @@ export default {
           ]
         }
       );
+    },
+    addElementInToDoBoard: function() {
+        this.board_data[0].item.push({
+          title: "Test Add"
+        });
+     },
+    removeDoneBoard: function() {
+      var vm = this
+      this.board_data.some(function(board, idx) {
+        if (board.id === "_done") {
+          vm.$data.board_data.pop(idx)
+          return true
+        }
+      })
+    },
+    removeMyTastTest: function() {
+      var vm = this
+      this.board_data.some(function(board, boardIdx) {
+        var deleted = false
+        if (board.id === "_todo") {
+          board.item.some(function(item, idx) {
+            if (item.id == "_test_delete") {
+              vm.$data.board_data[boardIdx].item.pop(idx)
+              deleted = true
+              return true
+            }
+          })
+
+          return deleted
+        }
+      })
     }
   },
   components: {
